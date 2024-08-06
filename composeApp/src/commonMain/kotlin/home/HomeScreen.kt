@@ -42,6 +42,13 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.encodeToString
 import kotlin.math.log
+import kotlin.properties.Delegates
+
+@Serializable
+object Globals {
+    var accessToken = "boob"
+    var instanceUrl = "boob"
+}
 
 class HomeScreen : Screen {
     @Composable
@@ -74,7 +81,6 @@ class HomeScreen : Screen {
                     visualTransformation = PasswordVisualTransformation(),
                     modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
                 )
-
                 Button(
                     onClick =
                     {
@@ -112,6 +118,11 @@ class HomeScreen : Screen {
         }
     }
 
+//    object SalesforceAuthenticator {
+//        var accessToken: String? by Delegates.observable(null) { _, _, newValue ->
+//            println("Access token updated: $newValue")
+//        }
+//    }
 
     private fun authenticateSalesforce(
         username: String,
@@ -150,6 +161,7 @@ class HomeScreen : Screen {
                 callback(false, e.message)
             } finally {
                 client.close()
+
             }
         }
     }
@@ -158,6 +170,9 @@ class HomeScreen : Screen {
 
         //make responseBody store the acess token locally, so that this call can work
         val jsonObject = Json.parseToJsonElement(responseBody).jsonObject
+        Globals.accessToken = jsonObject["access_token"]?.jsonPrimitive?.contentOrNull.toString()
+        Globals.instanceUrl = jsonObject["instance_url"]?.jsonPrimitive?.contentOrNull.toString()
+        println("test output4: ${Globals.accessToken}")
         return jsonObject["access_token"]?.jsonPrimitive?.contentOrNull
     }
 }
