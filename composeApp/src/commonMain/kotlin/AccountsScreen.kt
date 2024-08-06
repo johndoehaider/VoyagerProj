@@ -1,5 +1,5 @@
-// DetailsScreen.kt
-package screen.details
+// AccountsScreen.kt
+package screen.accounts
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -18,7 +18,7 @@ import screen.home.Globals.accessToken
 //import screen.home.HomeScreen.SalesforceAuthenticator.accessToken
 
 
-data class DetailsScreen(val number: Int) : Screen {
+data class AccountsScreen(val number: Int) : Screen {
     @Composable
     override fun Content() {
         var lastName by remember { mutableStateOf("") }
@@ -55,7 +55,7 @@ data class DetailsScreen(val number: Int) : Screen {
                         TextField(
                             value = lastName,
                             onValueChange = { lastName = it },
-                            label = { Text("Last Name") },
+                            label = { Text("John Doe") },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(bottom = 16.dp)
@@ -100,7 +100,7 @@ data class DetailsScreen(val number: Int) : Screen {
                             onClick = { navigator?.pop() },
                             modifier = Modifier.fillMaxWidth()
                         ) {
-                            Text("Log Out")
+                            Text("Back")
                         }
                     }
                 } else {

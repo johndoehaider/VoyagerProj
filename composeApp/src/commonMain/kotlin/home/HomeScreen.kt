@@ -44,10 +44,17 @@ import kotlinx.serialization.encodeToString
 import kotlin.math.log
 import kotlin.properties.Delegates
 
-@Serializable
 object Globals {
-    var accessToken = "boob"
-    var instanceUrl = "boob"
+    var accessToken = "yo"
+    var instanceUrl = "yo"
+    var name = "yo"
+    var billingCity = "yo"
+    var billingState = "yo"
+    var billingPostalCode = "yo"
+    var billingCountry = "yo"
+    var billingStreet = "yo"
+    var id = "yo"
+
 }
 
 class HomeScreen : Screen {
